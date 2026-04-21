@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramprakash Dey — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1a1a; --ink-soft: #555; --ink-muted: #999;
+  --bg: #f9f7f2; --bg-card: #ffffff; --bg-hover: #f4f1ea;
+  --accent: #1a3c5e; --accent-light: #e8eef5; --accent-mid: #2a5a8a;
+  --accent2: #b03020; --border: #e2ddd5;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --shadow: 0 2px 16px rgba(0,0,0,0.07);
+  --tr: 0.25s ease;
+}
+[data-theme="dark"] {
+  --ink: #f0ede6; --ink-soft: #a8a49e; --ink-muted: #6b6864;
+  --bg: #141210; --bg-card: #1e1c19; --bg-hover: #252320;
+  --accent: #6b9ec7; --accent-light: #1a2a38; --accent-mid: #4d84b5;
+  --accent2: #e07060; --border: #2e2c28;
+  --shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.6; font-size: 16px; transition: background var(--tr), color var(--tr); }
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(249,247,242,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; transition: background var(--tr); }
+[data-theme="dark"] nav { background: rgba(20,18,16,0.93); }
+.nav-logo { font-family: var(--serif); font-size: 1.3rem; color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.05em; text-transform: uppercase; transition: color var(--tr); }
+.nav-links a:hover { color: var(--accent); }
+.theme-btn { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; cursor: pointer; font-size: 0.8rem; color: var(--ink-soft); font-family: var(--sans); transition: all var(--tr); }
+.theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* HERO */
+.hero { max-width: 1100px; margin: 0 auto; padding: 7rem 2rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-tag { font-size: 0.73rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); display: inline-flex; align-items: center; gap: 7px; padding: 5px 14px; border-radius: 2px; margin-bottom: 1.5rem; }
+.pulse { width: 7px; height: 7px; background: #2ecc71; border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)} }
+.hero h1 { font-family: var(--serif); font-size: clamp(2.8rem,5vw,4.5rem); line-height: 1.05; letter-spacing: -1px; margin-bottom: 1.5rem; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-desc { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 2rem; max-width: 480px; }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; font-family: var(--sans); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-radius: 3px; transition: all var(--tr); cursor: pointer; border: none; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-mid); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+.btn-outline:hover { background: var(--accent-light); transform: translateY(-1px); }
+.btn-ghost { background: var(--bg-card); color: var(--ink-soft); border: 1px solid var(--border); font-size: 0.83rem; padding: 10px 20px; }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* AVATAR */
+.hero-visual { display: flex; justify-content: center; align-items: center; }
+.avatar-wrap { position: relative; width: 300px; height: 360px; }
+.avatar-bg { position: absolute; inset: 20px 0 0 20px; background: var(--accent-light); border-radius: 4px; }
+.avatar-box { position: absolute; inset: 0 20px 20px 0; background: var(--accent); border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.avatar-initials { font-family: var(--serif); font-size: 5.5rem; color: rgba(255,255,255,0.15); user-select: none; letter-spacing: -4px; }
+.avatar-name-card { position: absolute; bottom: -10px; left: -10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 12px 18px; box-shadow: var(--shadow); min-width: 190px; }
+.avatar-name-card h3 { font-size: 1rem; font-weight: 500; }
+.avatar-name-card p { font-size: 0.8rem; color: var(--ink-soft); margin-top: 2px; }
+.status-badge { position: absolute; top: -12px; right: -12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 6px 12px; font-size: 0.75rem; font-weight: 500; color: #2ecc71; display: flex; align-items: center; gap: 5px; box-shadow: var(--shadow); }
+
+/* STATS */
+.stats-bar { background: var(--accent); color: #fff; padding: 2.5rem 2rem; }
+.stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; text-align: center; }
+.stat-num { font-family: var(--serif); font-size: 2.5rem; display: block; margin-bottom: 4px; }
+.stat-label { font-size: 0.78rem; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* SECTIONS */
+section { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+.section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.section-title { font-family: var(--serif); font-size: clamp(1.8rem,3.5vw,2.6rem); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 3rem; }
+hr.div { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
+
+/* FADE */
+.fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
+.service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 2rem; transition: border-color var(--tr), transform var(--tr), box-shadow var(--tr); }
+.service-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow); }
+.service-num { font-family: var(--serif); font-size: 2.5rem; color: var(--border); line-height: 1; margin-bottom: 1rem; transition: color var(--tr); }
+.service-card:hover .service-num { color: var(--accent); }
+.service-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 8px; }
+.service-card p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+.skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; transition: border-color var(--tr), transform var(--tr); }
+.skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.skill-icon { width: 40px; height: 40px; background: var(--accent-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.2rem; }
+.skill-card h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 6px; }
+.skill-card p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.5; }
+
+/* BARS */
+.skill-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; }
+.bar-item { margin-bottom: 4px; }
+.bar-header { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 0.88rem; font-weight: 500; }
+.bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--accent); border-radius: 3px; width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+
+/* TOOLS */
+.tools-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+.tool-tag { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); transition: all var(--tr); cursor: default; }
+.tool-tag:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+
+/* TIMELINE */
+.timeline { position: relative; }
+.timeline::before { content:''; position: absolute; left: 7px; top: 6px; bottom: 0; width: 2px; background: var(--border); }
+.tl-item { position: relative; padding-left: 2.5rem; margin-bottom: 3rem; }
+.tl-dot { position: absolute; left: 0; top: 6px; width: 16px; height: 16px; background: var(--accent); border: 3px solid var(--bg); border-radius: 50%; outline: 2px solid var(--border); }
+.tl-date { font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); margin-bottom: 4px; }
+.tl-role { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 2px; }
+.tl-company { font-size: 0.85rem; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+.tl-bullets { list-style: none; margin-top: 8px; }
+.tl-bullets li { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; padding-left: 1rem; position: relative; margin-bottom: 4px; }
+.tl-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+.tl-badge { display: inline-block; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 2px; margin-bottom: 8px; }
+.badge-current { background: #e6f9ee; color: #1a7a40; }
+[data-theme="dark"] .badge-current { background: #0d2e1a; color: #4ecf80; }
+.badge-past { background: var(--bg-hover); color: var(--ink-muted); }
+
+/* ACHIEVEMENTS */
+.achievements-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.5rem; }
+.ach-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 4px; padding: 1.5rem; transition: box-shadow var(--tr); }
+.ach-card:hover { box-shadow: var(--shadow); }
+.ach-num { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); display: block; margin-bottom: 4px; }
+.ach-card h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 6px; }
+.ach-card p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.55; }
+
+/* PROJECTS */
+.projects-grid { display: grid; gap: 1.5rem; }
+.project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 2rem 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start; transition: box-shadow var(--tr), border-color var(--tr); }
+.project-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.project-tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); background: #fdf0ee; padding: 3px 10px; border-radius: 2px; margin-bottom: 10px; display: inline-block; }
+[data-theme="dark"] .project-tag { background: #2a1510; }
+.project-card h3 { font-family: var(--serif); font-size: 1.4rem; margin-bottom: 8px; }
+.project-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.65; max-width: 560px; }
+.project-date { font-size: 0.78rem; color: var(--ink-muted); white-space: nowrap; }
+
+/* QUOTE */
+.quote-block { border-left: 3px solid var(--accent); padding: 1.5rem 2rem; background: var(--accent-light); border-radius: 0 6px 6px 0; margin-top: 2rem; }
+.quote-block p { font-family: var(--serif); font-size: 1.2rem; font-style: italic; line-height: 1.6; }
+.quote-block cite { display: block; margin-top: 10px; font-style: normal; font-size: 0.82rem; color: var(--ink-muted); }
+
+/* LANGUAGES */
+.lang-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.lang-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 2rem; text-align: center; min-width: 130px; }
+.lang-item h3 { font-size: 1.05rem; font-weight: 500; margin-bottom: 4px; }
+.lang-item p { font-size: 0.78rem; color: var(--ink-soft); }
+.lang-dots { display: flex; gap: 5px; justify-content: center; margin-top: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.dot.filled { background: var(--accent); }
+
+/* CV CTA */
+.cv-cta { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; margin-top: 4rem; }
+.cv-cta h3 { font-family: var(--serif); font-size: 1.4rem; margin-bottom: 4px; }
+.cv-cta p { font-size: 0.88rem; color: var(--ink-soft); }
+
+/* CONTACT */
+.contact-section { background: var(--accent); color: #fff; padding: 5rem 2rem; text-align: center; }
+.contact-section .section-label { color: rgba(255,255,255,0.55); }
+.contact-section .section-title { color: #fff; margin-bottom: 1rem; }
+.contact-section > p { color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-bottom: 2.5rem; }
+.contact-links { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+.contact-link { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: rgba(255,255,255,0.85); text-decoration: none; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); padding: 10px 20px; border-radius: 4px; transition: background var(--tr); }
+.contact-link:hover { background: rgba(255,255,255,0.2); }
+
+footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--ink-muted); border-top: 1px solid var(--border); }
+
+@media(max-width:768px){
+  .hero { grid-template-columns: 1fr; padding-top: 4rem; }
+  .hero-visual { display: none; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .nav-links li:not(:last-child) { display: none; }
+  .project-card { grid-template-columns: 1fr; }
+  .skill-bars { grid-template-columns: 1fr; }
+  .cv-cta { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">RD</span>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="fade-in">
+    <span class="hero-tag"><span class="pulse"></span>Available for remote work</span>
+    <h1>Ramprakash<br><em>Dey</em></h1>
+    <p class="hero-desc">Data analyst and cybersecurity specialist with hands-on experience in AI content moderation, dark web intelligence, and government data management. Based in Karimganj, Assam.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get in touch ↗</a>
+      <a href="#experience" class="btn btn-outline">View experience</a>
+      <button onclick="downloadCV()" class="btn btn-ghost">⬇ Download CV</button>
+    </div>
+  </div>
+  <div class="hero-visual fade-in" style="transition-delay:.15s">
+    <div class="avatar-wrap">
+      <div class="avatar-bg"></div>
+      <div class="avatar-box"><span class="avatar-initials">RD</span></div>
+      <div class="avatar-name-card"><h3>Ramprakash Dey</h3><p>Data Analyst · Cybersecurity</p></div>
+      <div class="status-badge"><span class="pulse"></span>Open to work</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><span class="stat-num counter" data-target="1000" data-suffix="+">0+</span><span class="stat-label">Records managed</span></div>
+    <div><span class="stat-num counter" data-target="99" data-suffix="%">0%</span><span class="stat-label">Data accuracy</span></div>
+    <div><span class="stat-num counter" data-target="500" data-suffix="+">0+</span><span class="stat-label">Docs digitized</span></div>
+    <div><span class="stat-num counter" data-target="200" data-suffix="+">0+</span><span class="stat-label">Web forums/month</span></div>
+  </div>
+</div>
+<hr class="div">
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label">What I offer</p>
+  <h2 class="section-title">Services</h2>
+  <div class="services-grid">
+    <div class="service-card fade-in"><div class="service-num">01</div><h3>Data Entry & Management</h3><p>Fast, accurate data entry and database management for government, enterprise, or remote projects. 99%+ accuracy with thorough verification processes.</p></div>
+    <div class="service-card fade-in" style="transition-delay:.08s"><div class="service-num">02</div><h3>AI Content Moderation</h3><p>Evaluating AI outputs for safety, bias, and policy compliance. Experienced across hate speech, misinformation, child safety, healthcare, and sextortion domains.</p></div>
+    <div class="service-card fade-in" style="transition-delay:.16s"><div class="service-num">03</div><h3>Cybersecurity Research</h3><p>Dark web, deep web, and surface web intelligence gathering. Pattern analysis, marketplace research, and security risk reporting using DarkOwl and OSINT tools.</p></div>
+    <div class="service-card fade-in" style="transition-delay:.24s"><div class="service-num">04</div><h3>Web Scraping & OSINT</h3><p>Structured data collection from online sources, open-source intelligence gathering, and competitive research analysis and reporting.</p></div>
+    <div class="service-card fade-in" style="transition-delay:.32s"><div class="service-num">05</div><h3>Document Digitization</h3><p>Converting physical records to organized digital formats. Experience digitizing 500+ government documents with measurably improved retrieval times.</p></div>
+    <div class="service-card fade-in" style="transition-delay:.40s"><div class="service-num">06</div><h3>Data Quality & Verification</h3><p>Auditing datasets for discrepancies, cleaning records, and improving data reliability. Proven track record resolving 100+ complex data inconsistencies.</p></div>
+  </div>
+</section>
+<hr class="div">
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Expertise</p>
+  <h2 class="section-title">Skills & proficiency</h2>
+  <div class="skills-grid fade-in">
+    <div class="skill-card"><div class="skill-icon">🔐</div><h3>Cybersecurity</h3><p>Dark/deep/surface web monitoring and threat intelligence.</p></div>
+    <div class="skill-card"><div class="skill-icon">🤖</div><h3>AI Moderation</h3><p>Safety evaluation across multiple harm categories and content policies.</p></div>
+    <div class="skill-card"><div class="skill-icon">📊</div><h3>Data Analysis</h3><p>High-accuracy entry, verification, and discrepancy resolution.</p></div>
+    <div class="skill-card"><div class="skill-icon">🕸️</div><h3>Web Scraping</h3><p>Structured data collection using proprietary and custom tools.</p></div>
+    <div class="skill-card"><div class="skill-icon">🔍</div><h3>OSINT Research</h3><p>Open-source intelligence and marketplace investigation.</p></div>
+    <div class="skill-card"><div class="skill-icon">📁</div><h3>Document Management</h3><p>Digitizing and organizing large volumes of physical records.</p></div>
+  </div>
+
+  <div class="skill-bars fade-in" id="skillBarsSection">
+    <div class="bar-item"><div class="bar-header"><span>Data Entry & Accuracy</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" data-width="95"></div></div></div>
+    <div class="bar-item"><div class="bar-header"><span>AI Content Moderation</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-width="88"></div></div></div>
+    <div class="bar-item"><div class="bar-header"><span>Cybersecurity / OSINT</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-width="82"></div></div></div>
+    <div class="bar-item"><div class="bar-header"><span>Web Scraping</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-width="78"></div></div></div>
+    <div class="bar-item"><div class="bar-header"><span>Research & Reporting</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-width="85"></div></div></div>
+    <div class="bar-item"><div class="bar-header"><span>Data Verification</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" data-width="92"></div></div></div>
+  </div>
+
+  <div style="margin-top:3rem" class="fade-in">
+    <p class="section-label" style="margin-bottom:1rem">Tools & platforms</p>
+    <div class="tools-wrap">
+      <span class="tool-tag">DarkOwl</span><span class="tool-tag">Gmail</span><span class="tool-tag">WhatsApp Business</span><span class="tool-tag">MS Excel</span><span class="tool-tag">Google Sheets</span><span class="tool-tag">Google Docs</span><span class="tool-tag">Web Extensions</span><span class="tool-tag">OSINT Frameworks</span><span class="tool-tag">Tor Browser</span><span class="tool-tag">Data Scraping Tools</span><span class="tool-tag">Content Review Platforms</span><span class="tool-tag">Government Portals</span>
+    </div>
+  </div>
+</section>
+<hr class="div">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Work history</p>
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+    <div class="tl-item fade-in">
+      <div class="tl-dot"></div>
+      <p class="tl-date">Jan 2024 — Present</p>
+      <span class="tl-badge badge-current">Current role</span>
+      <h3 class="tl-role">Data Entry Operator</h3>
+      <p class="tl-company">DC Office, Karimganj</p>
+      <ul class="tl-bullets">
+        <li>Manage data entry for government records including ration card data and citizen databases</li>
+        <li>Digitize and organize 500+ paperwork items to streamline record retrieval and prevent errors</li>
+        <li>Verify applicant details and resolve data discrepancies in collaboration with government officials</li>
+        <li>Maintain 99% accuracy rate across 1,000+ citizen records</li>
+      </ul>
+    </div>
+    <div class="tl-item fade-in">
+      <div class="tl-dot"></div>
+      <p class="tl-date">Aug 2023 — Sep 2023</p>
+      <span class="tl-badge badge-past">Completed</span>
+      <h3 class="tl-role">Gen-AI Analyst</h3>
+      <p class="tl-company">Team Karimganj (Gen-AI Projects)</p>
+      <ul class="tl-bullets">
+        <li>Participated in AI moderation projects covering hate speech, child safety, misinformation, healthcare, sextortion, and racism</li>
+        <li>Evaluated AI model responses against safety prompts and rated them safe or unsafe</li>
+        <li>Applied structured criteria-based judgment to ensure responsible AI content standards</li>
+      </ul>
+    </div>
+    <div class="tl-item fade-in">
+      <div class="tl-dot"></div>
+      <p class="tl-date">May 2023 — Jul 2023</p>
+      <span class="tl-badge badge-past">Completed</span>
+      <h3 class="tl-role">Trainee Analyst</h3>
+      <p class="tl-company">Team Karimganj (DarkOwl)</p>
+      <ul class="tl-bullets">
+        <li>Performed web extension tasks using DarkOwl's proprietary dark web technology</li>
+        <li>Collected, analyzed, and reported data from dark web, deep web, and surface web sources</li>
+        <li>Analyzed 200+ web forums monthly, contributing to 10% growth in actionable intelligence insights</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<hr class="div">
+
+<!-- ACHIEVEMENTS -->
+<section class="fade-in">
+  <p class="section-label">Impact</p>
+  <h2 class="section-title">Key achievements</h2>
+  <div class="achievements-grid">
+    <div class="ach-card"><span class="ach-num">99%</span><h3>Data Accuracy</h3><p>Maintained near-perfect accuracy across 1,000+ citizen records in government data management.</p></div>
+    <div class="ach-card"><span class="ach-num">50%</span><h3>Faster Retrieval</h3><p>Digitized 500+ government documents, cutting average retrieval time by half.</p></div>
+    <div class="ach-card"><span class="ach-num">+10%</span><h3>Insight Growth</h3><p>Monthly analysis of 200+ web forums drove 10% increase in actionable intelligence output.</p></div>
+    <div class="ach-card"><span class="ach-num">100+</span><h3>Cases Resolved</h3><p>Resolved data discrepancies in 100+ cases, improving database reliability by 25%.</p></div>
+  </div>
+</section>
+<hr class="div">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Research work</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div>
+        <span class="project-tag">Cybersecurity Research</span>
+        <h3>Dark Web WhatsApp Marketplace Study</h3>
+        <p>Researched dark web marketplaces for WhatsApp account trafficking. Identified active forums and trading platforms, analyzed pricing patterns, transaction methods, and security risks. Findings contributed to understanding of social media account vulnerabilities.</p>
+        <div style="margin-top:1rem;display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="tool-tag">Dark Web Analysis</span><span class="tool-tag">OSINT</span><span class="tool-tag">Risk Assessment</span><span class="tool-tag">Pattern Analysis</span>
+        </div>
+      </div>
+      <span class="project-date">Oct – Nov 2023</span>
+    </div>
+    <div class="project-card fade-in">
+      <div>
+        <span class="project-tag">AI Safety Research</span>
+        <h3>Multi-Domain AI Response Safety Evaluation</h3>
+        <p>As part of the Gen-AI moderation program, evaluated AI model responses across 6+ high-stakes domains including healthcare misinformation, child safety, hate speech, suicide content, and sextortion. Built a consistent judgment framework for rating AI-generated content against safety policies.</p>
+        <div style="margin-top:1rem;display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="tool-tag">AI Safety</span><span class="tool-tag">Content Policy</span><span class="tool-tag">Risk Scoring</span>
+        </div>
+      </div>
+      <span class="project-date">Aug – Sep 2023</span>
+    </div>
+  </div>
+  <div class="quote-block fade-in">
+    <p>"Detail-oriented, reliable, and committed to accuracy — I bring the same discipline to every project whether it's government records, AI safety, or cybersecurity intelligence."</p>
+    <cite>— Ramprakash Dey</cite>
+  </div>
+</section>
+<hr class="div">
+
+<!-- EDUCATION + LANGUAGES -->
+<section class="fade-in">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;flex-wrap:wrap">
+    <div>
+      <p class="section-label">Education</p>
+      <h2 class="section-title" style="font-size:2rem;margin-bottom:1.5rem">Academic background</h2>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:1.5rem 2rem">
+        <p style="font-size:0.78rem;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Aug 2019 — May 2022</p>
+        <h3 style="font-family:var(--serif);font-size:1.5rem;margin-bottom:4px">Bachelor of Science</h3>
+        <p style="color:var(--accent);font-size:.9rem;font-weight:500">Karimganj College, Karimganj</p>
+      </div>
+    </div>
+    <div>
+      <p class="section-label">Communication</p>
+      <h2 class="section-title" style="font-size:2rem;margin-bottom:1.5rem">Languages</h2>
+      <div class="lang-grid">
+        <div class="lang-item"><h3>Bengali</h3><p>Advanced</p><div class="lang-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+        <div class="lang-item"><h3>English</h3><p>Proficient</p><div class="lang-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+        <div class="lang-item"><h3>Hindi</h3><p>Advanced</p><div class="lang-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-cta fade-in">
+    <div>
+      <h3>Want my full CV?</h3>
+      <p>Download a complete version of my resume to share with your hiring team.</p>
+    </div>
+    <button class="btn btn-primary" onclick="downloadCV()">⬇ Download CV</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <p class="section-label">Let's work together</p>
+  <h2 class="section-title">Get in touch</h2>
+  <p>Open to remote opportunities in data analysis, cybersecurity, AI moderation, and content review.</p>
+  <div class="contact-links">
+    <a href="mailto:ramprakashdey7@gmail.com" class="contact-link">✉ ramprakashdey7@gmail.com</a>
+    <a href="tel:+919365560452" class="contact-link">☎ +91 93655 60452</a>
+    <span class="contact-link">📍 Karimganj, Assam, India</span>
+  </div>
+</div>
+
+<footer><p>© 2026 Ramprakash Dey &nbsp;·&nbsp; Data Analyst & Cybersecurity Specialist &nbsp;·&nbsp; Karimganj, Assam</p></footer>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  if(h.dataset.theme==='light'){h.dataset.theme='dark';b.textContent='☀ Light';}
+  else{h.dataset.theme='light';b.textContent='🌙 Dark';}
+}
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+
+const barsEl=document.getElementById('skillBarsSection');
+if(barsEl){
+  const bIO=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      document.querySelectorAll('.bar-fill').forEach(b=>{setTimeout(()=>{b.style.width=b.dataset.width+'%';},100);});
+      bIO.disconnect();
+    }
+  },{threshold:0.3});
+  bIO.observe(barsEl);
+}
+
+const statsEl=document.querySelector('.stats-bar');
+if(statsEl){
+  const sIO=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      document.querySelectorAll('.counter').forEach(el=>{
+        const target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'+';
+        let cur=0;const step=Math.ceil(target/60);
+        const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=cur.toLocaleString()+suffix;if(cur>=target)clearInterval(t);},22);
+      });
+      sIO.disconnect();
+    }
+  },{threshold:0.5});
+  sIO.observe(statsEl);
+}
+
+function downloadCV(){
+  const txt=`RAMPRAKASH DEY
+Data Entry Operator | Cybersecurity | Data Analysis | Content Moderation
+
+CONTACT
+Email: ramprakashdey7@gmail.com | Phone: +91 9365560452 | Location: Karimganj, Assam, India
+
+SUMMARY
+Detail-oriented analyst with hands-on experience in cybersecurity, AI moderation, and government data entry. Expertise in web data analysis at DarkOwl and content evaluation at Gen-AI. Strong skills in data analysis, research, and content moderation.
+
+EXPERIENCE
+
+Data Entry Operator — DC Office, Karimganj | Jan 2024 – Present
+• Managed data entry for government records including ration card data and citizen databases
+• Digitized and organized 500+ documents, reducing retrieval time by 50%
+• Verified applicant details and resolved 100+ data discrepancies with officials
+• Maintained 99% accuracy rate across 1,000+ citizen records
+
+Gen-AI Analyst — Team Karimganj | Aug 2023 – Sep 2023
+• AI moderation across hate speech, child safety, misinformation, healthcare, sextortion, and racism
+• Evaluated AI model responses and rated them safe/unsafe based on Gen-AI criteria
+
+Trainee Analyst — Team Karimganj (DarkOwl) | May 2023 – Jul 2023
+• Web extension tasks using DarkOwl's proprietary technology
+• Analyzed data from dark web, deep web, and surface web
+• Analyzed 200+ web forums monthly → 10% growth in actionable insights
+
+EDUCATION
+Bachelor of Science — Karimganj College | Aug 2019 – May 2022
+
+KEY ACHIEVEMENTS
+• 99% accuracy across 1,000+ citizen records
+• Digitized 500+ documents, 50% faster retrieval
+• +10% insight growth from web forum analysis
+• 100+ discrepancy cases resolved, +25% data reliability
+
+SKILLS
+Cybersecurity, Web Scraping, Data Entry & Analysis, AI Content Moderation, OSINT, Document Management, Data Verification, DarkOwl, MS Excel, Google Sheets
+
+LANGUAGES
+Bengali (Advanced), English (Proficient), Hindi (Advanced)`;
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain'}));
+  a.download='Ramprakash_Dey_CV.txt';a.click();
+}
+</script>
+</body>
+</html>
